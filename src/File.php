@@ -76,12 +76,13 @@ class File
         if (function_exists('sys_get_temp_dir')) {
             return sys_get_temp_dir();
         }
-        
+        // @codeCoverageIgnoreStart
         if (($tmp = getenv('TMP')) || ($tmp = getenv('TEMP')) || ($tmp = getenv('TMPDIR'))) {
             return realpath($tmp);
         }
         
         return '/tmp';
+        // @codeCoverageIgnoreEnd
     }
     
     /**
@@ -106,9 +107,11 @@ class File
             
             return;
         }
-        
+        // @codeCoverageIgnoreStart
         $this->selfSender($filename, $contentType, $inline);
+        
     }
+    // @codeCoverageIgnoreEnd
     
     /**
      * @param callable $responseMethod
@@ -125,9 +128,12 @@ class File
      * @param string|null $filename    the filename to send. If empty, the file is streamed inline.
      * @param string      $contentType the Content-Type header
      * @param bool        $inline      whether to force inline display of the file, even if filename is present.
+     *
+     * @codeCoverageIgnoreStart
      */
     private function selfSender(string $filename, $contentType, $inline = false): void
     {
+        
         header('Pragma: public');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -146,7 +152,9 @@ class File
         }
         
         readfile($this->_fileName);
+        
     }
+    // @codeCoverageIgnoreEnd
     
     
     /**
