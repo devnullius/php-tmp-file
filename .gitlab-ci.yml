@@ -1,0 +1,30 @@
+cache:
+  paths:
+    - $HOME/.composer/cache
+    - vendor/
+
+stages:
+  - test
+
+.test_template: &test_definition
+  stage: test
+  variables:
+    COMPOSER_CACHE_DIR: /cache/composer/cache
+  before_script:
+    - php -v
+    - docker-php-ext-enable zip gd intl pdo_dblib pdo_mysql pdo_pgsql pgsql xmlrpc xsl zip bcmath
+    - php -r "echo INTL_ICU_VERSION . \"\n\";"
+    - composer self-update && composer --version
+    - export PATH="$HOME/.composer/vendor/bin:$PATH"
+    - composer validate --strict
+    - composer install --prefer-dist --no-interaction --quiet
+
+tests on php7.1:
+  <<: *test_definition
+  image: tetraweb/php:7.1
+  script:
+    - vendor/bin/phpunit --coverage-text --colors
+  artifacts:
+      paths:
+        - /
+      expire_in: 10 mins
