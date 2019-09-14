@@ -1,5 +1,8 @@
 php-tmp-file
 ===========
+[![pipeline status](https://gitlab.com/aram.ds/php-tmp-file/badges/master/pipeline.svg)](https://gitlab.com/aram.ds/php-tmp-file/commits/master)
+[![coverage report](https://gitlab.com/aram.ds/php-tmp-file/badges/master/coverage.svg)](https://gitlab.com/aram.ds/php-tmp-file/commits/master)
+
 
 A convenience class for temporary files.
 
