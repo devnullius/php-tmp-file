@@ -1,0 +1,29 @@
+{
+  "name": "devnullius/php-tmp-file",
+  "description": "A convenience class for temporary files",
+  "keywords": [
+    "files"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Michael Härtl",
+      "email": "haertl.mike@gmail.com"
+    },
+    {
+      "name": "Aram H.",
+      "email": "aram.ds@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "7.5.*"
+  },
+  "require": {
+    "php": ">=7.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "devnullius\\tmp\\": "src/"
+    }
+  }
+}
