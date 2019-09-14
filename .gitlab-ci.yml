@@ -18,6 +18,7 @@ stages:
     - export PATH="$HOME/.composer/vendor/bin:$PATH"
     - composer validate --strict
     - composer install --prefer-dist --dev --no-interaction --quiet
+    - docker-php-ext-enable xdebug
 
 tests on php7.1:
   <<: *test_definition
